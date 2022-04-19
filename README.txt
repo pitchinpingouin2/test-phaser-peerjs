@@ -1,0 +1,1 @@
+You first need to type "npm run start" and "peerjs --port 8002" in two different cmd shelves (at the root of the folder), to make it run in your localhost:8001.

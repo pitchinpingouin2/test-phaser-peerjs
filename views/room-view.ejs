@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC with peerJS demo</title>
+    <script>
+        const ROOM_ID = "<%= roomId %>"
+    </script>
+
+    <style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    </style>
+
+    <!-- PeerJS library to deal with peers easily-->
+    <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js" defer></script>
+
+    <!-- 
+    Makes socket.io available to front-end apparently, need to investigate
+    "defer" laods he file in the background and triggers before the dom loads entirely
+    -->
+    <script defer src ="/socket.io/socket.io.js"> </script>
+    
+    <!-- Our main script to send messages between clients -->
+    <script defer src="communication.js"></script>
+
+    <!-- Phaser library-->
+    <script defer src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <script defer src="scene1.js"></script>
+    <script defer src="game.js"></script>
+</head>
+<body>
+    <h1>Welcome to the demo</h1>
+    <p id="numconnected"> You're alone.</p>
+
+    <div class="wrapper">
+        <div>
+            <div id="gameContainer"></div>
+            <p>'Arrows' to move your ship, 'click' to spawn another item. Move towards items to collect them.</p>
+            <p>Paste the link to others to play together (5 players max per room). Create your own room by entering any id after "localhost:8001/", or generate a random one by typing only "localhost:8001".</p>
+            <p>You first need to type "npm run start" and "peerjs --port 8002" in two different cmd shelves (at the root of the folder).</p>
+        </div>
+        <div>
+            <h2>chat</h2>
+            <p>Send a message</p>
+            <textarea id="yourMessage" cols="30" rows="4" placeholder="Write a message here ..."></textarea>
+            <button id="sendButton">Send message</button><br>
+        
+            <pre id="chat"></pre>
+
+        </div>
+    </div>
+</body>
+</html>
